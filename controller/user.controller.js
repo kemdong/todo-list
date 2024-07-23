@@ -2,7 +2,13 @@ const UserService = require('../services/user.services');
 
 exports.register = async (req, res, next) => {
   try {
+    console.log('Registration request received:', req.body);
     const { username, email, password } = req.body;
+
+    const existingUser = await UserService.checkUser(email);
+    if (existingUser) {
+      return res.status(400).json({ status: false, message: "Email is already registered" });
+    }
 
     const successRes = await UserService.registerUser(username, email, password);
     res.json({ status: true, success: "User registered successfully" });
@@ -14,6 +20,7 @@ exports.register = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
   try {
+    console.log('Login request received:', req.body);
     const { email, password } = req.body;
 
     const user = await UserService.checkUser(email);
@@ -26,12 +33,10 @@ exports.login = async (req, res, next) => {
       return res.status(401).json({ status: false, message: "Incorrect password" });
     }
 
-    // Prepare the payload for the JWT token
     const payload = { _id: user._id, email: user.email };
 
-    // Generate JWT token
-    const secretKey = "your_secret_key"; // Replace with your actual secret key
-    const expiresIn = '1h'; // Token expiration time
+    const secretKey = "your_secret_key";
+    const expiresIn = '1h';
 
     const token = await UserService.generateToken(payload, secretKey, expiresIn);
 
