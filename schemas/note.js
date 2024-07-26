@@ -3,10 +3,8 @@ const mongoose = require('mongoose');
 
 
 const noteSchema = mongoose.Schema({
-    userId: {
-        type: String,
-        required: true
-    },
+    
+   
     title : {
         type: String,
         required: true
@@ -14,10 +12,6 @@ const noteSchema = mongoose.Schema({
     content: {
         type: String,
         required: true
-    },
-    createdAt: {
-        type: Date,
-       required: true
     }
     //modifiedAt: {
        // type: Date,

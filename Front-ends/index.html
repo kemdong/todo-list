@@ -48,12 +48,18 @@
     <!-- Todo List Section -->
     <div id="todo-section" style="display: none;">
       <h2>Todo List</h2>
+      <!-- Button to fetch all notes -->
+      <button id="fetch-notes-btn" class="btn">
+        <i class='bx bxs-folder-open'></i> Get All Notes
+      </button>
       <form id="todo-form">
         <div class="form-group">
+          <label for="todo-title"><strong>Title</strong></label>
           <input type="text" id="todo-title" name="title" placeholder="Enter Todo Title" autocomplete="off" required>
         </div>
         <div class="form-group">
-          <textarea id="todo-content" name="content" placeholder="Enter Todo Content" rows="4" autocomplete="off" required></textarea>
+          <label for="todo-content"><strong>Content</strong></label>
+          <textarea id="todo-content" name="content" placeholder="Enter Todo Content" rows="8" autocomplete="off" required></textarea>
         </div>
         <button type="submit" class="btn">Add Todo</button>
       </form>

@@ -6,6 +6,13 @@ const db = require('./db');
 
 const user= require('./schemas/user');
 const note= require('./schemas/note');
+const mongoose = require('mongoose');
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'Front-ends')));
+
+
+
 
 
 // Allow only specific origin
@@ -21,9 +28,11 @@ app.use(express.json());
 
 // Import your routes
 const userRouter = require('./router/user.router');
+const noteRouter = require('./router/note.router');
 
 // Use the user routes for any request starting with /api/users
 app.use('/api/users', userRouter);
+app.use('/api/notes', noteRouter); 
 
 // Default route for testing
 app.get('/', (req, res) => {

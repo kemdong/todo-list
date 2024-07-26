@@ -1,74 +1,130 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'poppins',sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
+
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color:blue;
-    font-family: Arial, sans-serif;
-    margin: 0;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000; /* Black background for the body */
+  font-family: Arial, sans-serif;
+  margin: 0;
   
-  .container {
-    background-color: blueviolet;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-  }
-  
-  h2 {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .btn:hover {
-    background-color: blue;
-  }
-  
-  p {
-    text-align: center;
-    margin-top: 20px;
+}
 
-  }
-  .toggle-form{
-    color:blue;
-    cursor:pointer;
+.container {
+  background-color: #fff; /* White background for the container */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width:600px;
+}
 
-  }
-  .toggle-form:hover{
-    text-decoration: underline;
-  }
+h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #000; /* Black color for the heading */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #000; /* Black color for labels */
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #000; /* Black background for buttons */
+  color: #fff; /* White color for button text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #333; /* Darker black for hover effect */
+}
+
+p {
+  text-align: center;
+  margin-top: 20px;
+  color: #000; /* Black color for paragraph text */
+}
+
+.toggle-form {
+  color: #000; /* Black color for toggle form text */
+  cursor: pointer;
+}
+
+.toggle-form:hover {
+  text-decoration: underline;
+}
+
+/* style.css */
+#todo-list li {
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #000; /* Black color for todo items */
+
+}
+/* style.css */
+
+#todo-list i {
+  margin-left: 10px;
+  cursor: pointer;
+  color: black; /* Adjust the color to fit your design */
+}
+
+#todo-list i:hover {
+  color: red; /* Change color on hover for better UX */
+}
+
+.bx {
+  font-size: 1.2rem;
+}
+
+
+#todo-list button {
+  margin-left: 5px;
+  background-color: #000; /* Black background for todo item buttons */
+  color: #fff; /* White color for todo item button text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#todo-list button:hover {
+  background-color: #333; /* Darker black for hover effect */
+}
+#todo-section {
+  background-image: url('images/the-pros-and-cons-of-paper-to-do-lists.jpeg'); /* Replace with the path to your background image */
+  background-size: 150%; /* Ensures the image covers the entire section */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  padding: 20px; /* Optional: Adjust padding to ensure the content doesn't overlap with the edges */
+  border-radius: 10px; /* Optional: Adds rounded corners to the section */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+  
   

@@ -1,8 +1,8 @@
 const Note = require('../schemas/note');
 
 class NoteService {
-    static async createNote(userId, title, content, createdAt) {
-        const createNote = new Note({ userId, title, content, createdAt });
+    static async createNote(title, content) {
+        const createNote = new Note({ title, content});
         return await createNote.save();
     }
 
@@ -23,11 +23,11 @@ class NoteService {
         }
     }
 
-    static async updateNote(id, userId, title, content, createdAt) {
+    static async updateNote(id, title, content) {
         try {
             const updatedNote = await Note.findOneAndUpdate(
                 { _id: id },
-                { userId, title, content, createdAt },
+                { title, content},
                 { new: true } // To return the updated document
             );
             return updatedNote;
@@ -36,5 +36,6 @@ class NoteService {
         }
     }
 }
+
 
 module.exports = NoteService;
