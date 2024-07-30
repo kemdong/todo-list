@@ -13,13 +13,13 @@ body {
   background-color: #000; /* Black background for the body */
   font-family: Arial, sans-serif;
   margin: 0;
-  
+
 }
 
 .container {
   background-color: #fff; /* White background for the container */
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width:600px;
 }
@@ -104,6 +104,7 @@ p {
 }
 
 
+
 #todo-list button {
   margin-left: 5px;
   background-color: #000; /* Black background for todo item buttons */
@@ -117,7 +118,7 @@ p {
   background-color: #333; /* Darker black for hover effect */
 }
 #todo-section {
-  background-image: url('images/the-pros-and-cons-of-paper-to-do-lists.jpeg'); /* Replace with the path to your background image */
+  background-image: url('images/maiva.png'); /* Replace with the path to your background image */
   background-size: 150%; /* Ensures the image covers the entire section */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents the image from repeating */

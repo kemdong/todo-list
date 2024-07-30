@@ -18,6 +18,7 @@ exports.register = async (req, res, next) => {
   }
 };
 
+
 exports.login = async (req, res, next) => {
   try {
     console.log('Login request received:', req.body);

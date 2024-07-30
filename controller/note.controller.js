@@ -2,10 +2,10 @@ const NoteService = require('../services/note.services');
 
 exports.createNote = async (req, res, next) => {
   try {
-    const {  title, content, } = req.body;
+    const {  title, content,date,time } = req.body;
 
     // Assuming NoteService handles creation and returns a note object
-    let note = await NoteService.createNote( title, content,);
+    let note = await NoteService.createNote( title, content, date ,time);
     
     res.json({ status: true, success: note });
   } catch (error) {
@@ -37,9 +37,9 @@ exports.deleteNote = async (req, res, next) => {
 exports.updateNote = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { title, content, } = req.body;
+        const { title, content,date,time } = req.body;
 
-        let updatedNote = await NoteService.updateNote(id, title, content,);
+        let updatedNote = await NoteService.updateNote(id, title, content,date,time);
 
         res.json({ status: true, success: updatedNote });
     } catch (error) {
