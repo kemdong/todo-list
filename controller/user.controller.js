@@ -46,4 +46,18 @@ exports.login = async (req, res, next) => {
     console.error('Login error:', error);
     res.status(500).json({ status: false, message: 'Login failed' });
   }
+}
+  // controllers/userController.js
+
+exports.logout = (req, res) => {
+  if (req.session) {
+      req.session.destroy(err => {
+          if (err) {
+              return res.status(500).json({ status: 'error', message: 'Failed to logout' });
+          }
+          res.json({ status: 'success', message: 'Logged out successfully' });
+      });
+  } else {
+      res.status(400).json({ status: 'error', message: 'No session found' });
+  }
 };

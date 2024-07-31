@@ -60,6 +60,38 @@ async function handleLogin(event) {
     alert('Login failed due to a network error.');
   }
 }
+// Logout user
+async function handleLogout() {
+  try {
+    const response = await fetch('http://localhost:3000/api/users/logout', {
+      method: 'POST',
+      credentials: 'include', // Include cookies for session-based auth
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    // Check if the response is empty
+    const responseBody = await response.text();
+    let data = {};
+    if (responseBody) {
+      data = JSON.parse(responseBody);
+    }
+
+    if (response.ok) {
+      localStorage.removeItem('userId'); // Remove any client-side stored data if needed
+      alert('Logout successful!');
+      window.location.href = 'index.html'; // Redirect to registration page
+    } else {
+      alert(`Logout failed: ${data.message}`);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Failed to logout due to a network error.');
+  }
+}
+
+
 
 // Submit new todo
 async function handleTodoSubmit(event) {
@@ -91,6 +123,7 @@ async function handleTodoSubmit(event) {
             ${data.success.title} - ${data.success.content} <br>
             Date: ${data.success.date} <br>
             Time: ${data.success.time}
+            <i class='bx bx-check' onclick="handleComplete('${data.success._id}')"></i>
             <i class='bx bxs-edit' onclick="handleUpdate('${data.success._id}')"></i>
             <i class='bx bxs-trash' onclick="handleDelete('${data.success._id}')"></i>
           `;
@@ -118,6 +151,7 @@ async function handleTodoSubmit(event) {
   }
 }
 
+// Fetch todos
 async function fetchTodos() {
   try {
     const response = await fetch('http://localhost:3000/api/notes');
@@ -139,9 +173,17 @@ async function fetchTodos() {
           ${todo.title} - ${todo.content} <br>
           Date: ${todo.date} <br>
           Time: ${todo.time}
+          <i class='bx bx-check' onclick="handleComplete('${todo._id}')"></i>
           <i class='bx bxs-edit' onclick="handleUpdate('${todo._id}')"></i>
           <i class='bx bxs-trash' onclick="handleDelete('${todo._id}')"></i>
         `;
+        if (todo.completed) {
+          todoItem.style.textDecoration = 'line-through'; // Mark as completed visually
+          const checkIcon = todoItem.querySelector('.bx-check');
+          if (checkIcon) {
+            checkIcon.style.color = 'green'; // Change icon color to indicate completion
+          }
+        }
         todoList.appendChild(todoItem);
       });
     } else {
@@ -179,6 +221,7 @@ async function handleUpdate(id) {
           ${data.success.title} - ${data.success.content} <br>
           Date: ${data.success.date} <br>
           Time: ${data.success.time}
+          <i class='bx bx-check' onclick="handleComplete('${data.success._id}')"></i>
           <i class='bx bxs-edit' onclick="handleUpdate('${data.success._id}')"></i>
           <i class='bx bxs-trash' onclick="handleDelete('${data.success._id}')"></i>
         `;
@@ -191,6 +234,39 @@ async function handleUpdate(id) {
     }
   }
 }
+
+// Complete todo
+async function handleComplete(id) {
+  try {
+      const response = await fetch(`http://localhost:3000/api/notes/complete/${id}`, {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ completed: true }) // Send the correct data
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+          // Update the todo item in the list
+          const todoItem = document.querySelector(`#todo-list li[data-id="${id}"]`);
+          if (todoItem) {
+              todoItem.style.textDecoration = 'line-through'; // Mark as completed visually
+              const checkIcon = todoItem.querySelector('.bx-check');
+              if (checkIcon) {
+                  checkIcon.style.color = 'green'; // Change icon color to indicate completion
+              }
+          }
+      } else {
+          alert(`Failed to complete todo: ${data.message}`);
+      }
+  } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to complete todo due to a network error.');
+  }
+}
+
 
 // Delete todo
 async function handleDelete(id) {
@@ -216,7 +292,7 @@ async function handleDelete(id) {
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Failed to delete todo due to a network error.');
+      alert('Failed to delete todo due to a networkerror.');
     }
   }
 }
@@ -249,6 +325,7 @@ function showTodoSection() {
 document.getElementById('signup-form').addEventListener('submit', handleRegister);
 document.getElementById('login-form').addEventListener('submit', handleLogin);
 document.getElementById('todo-form').addEventListener('submit', handleTodoSubmit);
+document.getElementById('logout-button').addEventListener('click', handleLogout);
 
 // Initial fetch of todos when the page loads
 document.addEventListener('DOMContentLoaded', fetchTodos);

@@ -5,6 +5,7 @@ const NoteController = require('../controller/note.controller'); // Ensure corre
 router.post('/create', NoteController.createNote); // Correctly reference the createNote function
 router.delete('/delete/:id', NoteController.deleteNote);
 router.put('/update/:id', NoteController.updateNote);
+router.put('/complete/:id', NoteController.completeNote);
 //router.get('/read', NoteController.readNote);
 router.get('/read', NoteController.getAllNotes);
 module.exports = router;

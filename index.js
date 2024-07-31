@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const db = require('./db');
+const session = require('express-session');
 
 
 const user= require('./schemas/user');
@@ -11,18 +12,29 @@ const path = require('path');
 
 app.use(express.static(path.join(__dirname, 'Front-ends')));
 
+app.use(session({
+    secret: 'your-secret-key', // Change this to your own secret key
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } 
+}));
 
+const allowedOrigin = 'http://127.0.0.1:5500';
 
-
+// Configure CORS
+app.use(cors({
+  origin: allowedOrigin,
+  credentials: true
+}));
 
 
 // Allow only specific origin
-const corsOptions = {
-    origin: 'http://127.0.0.1:5500', // Your frontend URL
-    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
-};
+//const corsOptions = {
+    //origin: 'http://127.0.0.1:5500', // Your frontend URL
+    //optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+//};
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 
 // Middleware to parse JSON bodies
 app.use(express.json());

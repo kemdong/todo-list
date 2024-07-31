@@ -17,11 +17,13 @@ const noteSchema = mongoose.Schema({
         type: String,
         required: true
       },
+      
       time: {
         type: String,
         required: true
-      }
-    }, { timestamps: true });
+    },
+      completed: { type: Boolean, default: false }});
+    
     //modifiedAt: {
        // type: Date,
         //required: true

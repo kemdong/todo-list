@@ -1,4 +1,6 @@
+
 const NoteService = require('../services/note.services');
+
 
 exports.createNote = async (req, res, next) => {
   try {
@@ -33,6 +35,21 @@ exports.deleteNote = async (req, res, next) => {
     } catch (error) {
         next(error); // Pass any errors to the error handling middleware
     }
+}
+exports.completeNote = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+      // Call the service method to mark the note as complete
+      const note = await NoteService.markNoteComplete(id);
+      if (note) {
+          res.json({ status: 'success', success: note });
+      } else {
+          res.status(404).json({ status: 'error', message: 'Note not found' });
+      }
+  } catch (error) {
+      res.status(500).json({ status: 'error', message: error.message });
+  }
 }
 exports.updateNote = async (req, res, next) => {
     try {
